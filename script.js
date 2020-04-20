@@ -17,7 +17,7 @@ function closeNav() {
 document.getElementById("myStart").addEventListener("click", closeButton);
 
 function closeButton() {
-    document.getElementById("myStart").style.display = "none";  
+    document.getElementById("myStart").style.display = "none";
 }
 
 //Timer:  Starts onClick and runs down to 0
@@ -45,9 +45,6 @@ function sendMessage() {
 
 }
 
-
-
-
 //Sound effects
 
 //--Buzzer when answered wrong
@@ -60,60 +57,69 @@ function sendMessage() {
 let quizQuestions = [
 
     {
-        question1: "Where do you place the <script> tag to insert a JavaScript?",
-        choices: ["<header>", "<.js>", "<head>", "<body>"],
-        answer: "<body>",
+        question: "What is Bob Dylan's birth name?",
+        choices: ["Robert Dylanson", "Robert Zimmerman", "Robert Plant", "John Wesley Harding"],
+        answer: "Robert Zimmerman",
     },
     {
-        question2: "What attribute do you use to refer to an external JavaScript(.js) file?",
-        choices: ["src=", "<a>", "href=", "link="],
-        answer: "src=",
-    }, {
-        question3: "When do you use a conditional if/else staement?",
-        choices: ["To return 1 or 0 condition", "To return a true or false condition", "To return a < or > condition", "To return [1] or [0] condition"],
-        answer: "",
-    }, {
-        question: "What is the highest node in the DOM hierarchy?",
-        choices: ["document", "HTML", "window", "XML"],
-        answer: "",
-    }, {
-        question4: " What is the correct syntax to display “Alert Me!” in an alert box using JavaScript??",
-        choices: ["alertme(Alert Me!)", "prompt(Alert Me!)", "alert(Alert Me!)", "alertbox(Alert Me!)"],
-        answer: "",
-    }, {
-        question5: "In the array let index = ['A', 'B', 'C', 'D'] what is the .indexOf D?",
-        choices: ["D", "3", "'D'", "4"],
-        answer: "3",
-    }, {
-        question: "Which of the following is not ?",
-        choices: ["a", "b", "c", "d"],
-        answer: "a",
-    }, {
-        question: "What does .querySelector do?",
-        choices: ["a", "b", "c", "d"],
-        answer: "a",
+        question: "Where is Radiohead originally from?",
+        choices: ["New York", "Australia", "England", "Los Angeles"],
+        answer: "England",
     }
+    // , {
+    //     question3: "When do you use a conditional if/else staement?",
+    //     choices: ["To return 1 or 0 condition", "To return a true or false condition", "To return a < or > condition", "To return [1] or [0] condition"],
+    //     answer: "",
+    // }, {
+    //     question: "What is the highest node in the DOM hierarchy?",
+    //     choices: ["document", "HTML", "window", "XML"],
+    //     answer: "",
+    // }, {
+    //     question4: " What is the correct syntax to display “Alert Me!” in an alert box using JavaScript??",
+    //     choices: ["alertme(Alert Me!)", "prompt(Alert Me!)", "alert(Alert Me!)", "alertbox(Alert Me!)"],
+    //     answer: "",
+    // }, {
+    //     question5: "In the array let index = ['A', 'B', 'C', 'D'] what is the .indexOf D?",
+    //     choices: ["D", "3", "'D'", "4"],
+    //     answer: "3",
+    // }, {
+    //     question: "Which of the following is not ?",
+    //     choices: ["a", "b", "c", "d"],
+    //     answer: "a",
+    // }, {
+    //     question: "What does .querySelector do?",
+    //     choices: ["a", "b", "c", "d"],
+    //     answer: "a",
+    // }
 ];
-
-//for loop will run through creating
-
-//Create button to click to disappear and then start questions
 
 //Question function will wait for button to be clicked to run placement of attributes for empty elements
 
+let currentQuestion = 0;
+
+document.getElementById("myStart").addEventListener("click", questionLayout);
+
+function questionLayout() {
+    let questionData = quizQuestions[currentQuestion];
+
+    document.getElementById("questions").textContent = questionData.question;
+
+    for (i = 0; i < questionData.choices.length; i++) {
+        let choiceElem = document.createElement("button");
+        choiceElem.textContent = questionData.choices[i];
+        document.getElementById("choices").appendChild(choiceElem);
+        choiceElem.setAttribute("class", "btn btn-primary btn-md col-md-3 my-1")
+        choiceElem.setAttribute("role", "button")
+    };
+
+    currentQuestion += 1;
+    if (currentQuestion === questionData.length) {
+        currentQuestion = 0;
+    }
+}
+document.getElementById("submit").addEventListener("click", questionLayout);
+questionLayout()
 
 
-document.getElementById("myStart").addEventListener("click", function questionLayout() {
-    let questionText = document.createElement("p");
-    let questions = document.createTextNode("Water");
-    questionText.appendChild(questions)
-    document.getElementById("questionText").appendChild(questionText);
+//if answered right then tally 1 to score if answered incorrect then tally -1 to score
 
-    
-    // let jumboSquare = document.getElementById("jumbotron-square");
-
-    // jumboSquare.addClass("jumbotron col-md-12 mx-auto mt-5");
-    // jumboSquare.setAttribute("");
-    // jumboSquare.textContent("This is a real question");
-    // jumboSquare.append(jumboSquare);
-})

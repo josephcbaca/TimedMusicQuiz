@@ -96,29 +96,44 @@ let quizQuestions = [
 //Question function will wait for button to be clicked to run placement of attributes for empty elements
 
 let currentQuestion = 0;
+let score = 0;
+let questionData = quizQuestions[currentQuestion];
 
 document.getElementById("myStart").addEventListener("click", questionLayout);
 
 function questionLayout() {
-    let questionData = quizQuestions[currentQuestion];
-
+    //Question populate
     document.getElementById("questions").textContent = questionData.question;
-
+    //Choices populate
     for (i = 0; i < questionData.choices.length; i++) {
         let choiceElem = document.createElement("button");
         choiceElem.textContent = questionData.choices[i];
         document.getElementById("choices").appendChild(choiceElem);
-        choiceElem.setAttribute("class", "btn btn-primary btn-md col-md-3 my-1")
-        choiceElem.setAttribute("role", "button")
+        choiceElem.setAttribute("class", "btn btn-primary btn-md col-md-3 my-1");
+        choiceElem.setAttribute("role", "button");
+        choiceElem.addEventListener("click", submitAnswer);
     };
+  
+    function submitAnswer() {
 
-    currentQuestion += 1;
-    if (currentQuestion === questionData.length) {
-        currentQuestion = 0;
+        if (questionData.choices = questionData.answer) {
+            console.log("correct")
+        }
+        else {
+            console.log("incorrect")
+        }
+
+        // // currentQuestion += 1;
+        // if (currentQuestion === questionData.length) {
+        //     currentQuestion = 0;
     }
+
+    currentQuestion++;
 }
-document.getElementById("submit").addEventListener("click", questionLayout);
-questionLayout()
+// document.getElementById("submit").addEventListener("click", questionLayout)
+// questionLayout()
+
+    //Button clicked correct or incorrect
 
 
 //if answered right then tally 1 to score if answered incorrect then tally -1 to score

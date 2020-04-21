@@ -97,11 +97,13 @@ let quizQuestions = [
 
 let currentQuestion = 0;
 let score = 0;
-let questionData = quizQuestions[currentQuestion];
+
+
 
 document.getElementById("myStart").addEventListener("click", questionLayout);
 
 function questionLayout() {
+    let questionData = quizQuestions[currentQuestion];
     //Question populate
     document.getElementById("questions").textContent = questionData.question;
     //Choices populate
@@ -110,13 +112,20 @@ function questionLayout() {
         choiceElem.textContent = questionData.choices[i];
         document.getElementById("choices").appendChild(choiceElem);
         choiceElem.setAttribute("class", "btn btn-primary btn-md col-md-3 my-1");
-        choiceElem.setAttribute("role", "button");
-        choiceElem.addEventListener("click", submitAnswer);
-    };
-  
-    function submitAnswer() {
 
-        if (questionData.choices = questionData.answer) {
+        choiceElem.addEventListener("click", function() {
+            submitAnswer(questionData.choices[i])
+        });
+    };
+
+    // let x = document.getElementById("submit-click").textContent;
+
+
+    function submitAnswer(submission) {
+        let questionData = quizQuestions[currentQuestion];
+        console.log(submission)
+        console.log(questionData.answer)
+        if (submission === questionData.answer) {
             console.log("correct")
         }
         else {

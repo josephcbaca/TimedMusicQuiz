@@ -3,7 +3,6 @@
 document.getElementById("cursorpointer").addEventListener("click", openNav);
 document.getElementById("myNav").addEventListener("click", closeNav);
 
-
 function openNav() {
     document.getElementById("myNav").style.display = "block";
 }
@@ -13,6 +12,11 @@ function closeNav() {
 }
 
 //Start Button
+let startButton = document.createElement("button");
+startButton.textContent = "Start Quiz!"
+document.getElementById("questionText").appendChild(startButton);
+startButton.setAttribute("class", "btn btn-md button-custom");
+startButton.setAttribute("id", "myStart");
 
 document.getElementById("myStart").addEventListener("click", closeButton);
 
@@ -20,13 +24,12 @@ function closeButton() {
     document.getElementById("myStart").style.display = "none";
 }
 
-//Timer:  Starts onClick and runs down to 0
 
+
+//Timer: Starts onClick and runs down to 0
 let timer = document.querySelector(".timer");
 let secondsLeft = 75;
 let minusTime = 5;
-
-
 
 document.getElementById("myStart").addEventListener("click", function setTime() {
     let timerInterval = setInterval(function () {
@@ -40,6 +43,7 @@ document.getElementById("myStart").addEventListener("click", function setTime() 
 
     }, 1000);
 });
+
 function sendMessage() {
     alert("You have run out of time!")
 
@@ -66,31 +70,6 @@ let quizQuestions = [
         choices: ["New York", "Australia", "England", "Los Angeles"],
         answer: "England",
     }
-    // , {
-    //     question3: "When do you use a conditional if/else staement?",
-    //     choices: ["To return 1 or 0 condition", "To return a true or false condition", "To return a < or > condition", "To return [1] or [0] condition"],
-    //     answer: "",
-    // }, {
-    //     question: "What is the highest node in the DOM hierarchy?",
-    //     choices: ["document", "HTML", "window", "XML"],
-    //     answer: "",
-    // }, {
-    //     question4: " What is the correct syntax to display “Alert Me!” in an alert box using JavaScript??",
-    //     choices: ["alertme(Alert Me!)", "prompt(Alert Me!)", "alert(Alert Me!)", "alertbox(Alert Me!)"],
-    //     answer: "",
-    // }, {
-    //     question5: "In the array let index = ['A', 'B', 'C', 'D'] what is the .indexOf D?",
-    //     choices: ["D", "3", "'D'", "4"],
-    //     answer: "3",
-    // }, {
-    //     question: "Which of the following is not ?",
-    //     choices: ["a", "b", "c", "d"],
-    //     answer: "a",
-    // }, {
-    //     question: "What does .querySelector do?",
-    //     choices: ["a", "b", "c", "d"],
-    //     answer: "a",
-    // }
 ];
 
 //Question function will wait for button to be clicked to run placement of attributes for empty elements
@@ -113,7 +92,7 @@ function questionLayout() {
         document.getElementById("choices").appendChild(choiceElem);
         choiceElem.setAttribute("class", "btn btn-primary btn-md col-md-3 my-1");
 
-        choiceElem.addEventListener("click", function() {
+        choiceElem.addEventListener("click", function () {
             submitAnswer(questionData.choices[i])
         });
     };
@@ -139,11 +118,12 @@ function questionLayout() {
 
     currentQuestion++;
 }
-// document.getElementById("submit").addEventListener("click", questionLayout)
-// questionLayout()
-
-    //Button clicked correct or incorrect
 
 
-//if answered right then tally 1 to score if answered incorrect then tally -1 to score
-
+// 1. Click Start Quiz and disappears
+// 2. First question appears(cycle through questions using for loop)
+// 3. Answer to question correct or not will go to next question
+// 4. Wrong answer will subtract 5 seconds from the Timer
+// 5. Correct answer will add +1 to score
+// 6. Timer expires and you are shown your score
+// 7. 
